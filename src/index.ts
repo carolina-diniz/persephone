@@ -5,4 +5,5 @@ console.log('Persephone is awakening...');
 
 (async () => {
   await discordApi.connect();
+  await discordApi.listenEvents()
 })()

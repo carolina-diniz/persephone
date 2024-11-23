@@ -1,5 +1,6 @@
 import { Client, IntentsBitField } from "discord.js";
 import "dotenv/config";
+import { onReady } from "../events";
 
 const client = new Client({
   intents: [
@@ -24,6 +25,9 @@ export const discordApi = {
       console.error("Error ao conectar ao discord: \n", error);
       return undefined;
     }
+  },
+  listenEvents: () => {
+    client.once('ready', onReady)
   },
   client,
 };
