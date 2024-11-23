@@ -1,1 +1,7 @@
-export function GuildAvailable() {}
+import { Guild } from "discord.js";
+import { client } from "../../apis";
+import { deployCommands } from "../service/deploy-commands";
+
+export async function GuildAvailable(guild: Guild) {
+  await deployCommands(client.user!.id, guild.id)
+}

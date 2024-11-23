@@ -1,7 +1,7 @@
 import { Client, IntentsBitField } from 'discord.js';
 import 'dotenv/config';
 
-const client = new Client({
+export const client = new Client({
   intents: [
     IntentsBitField.Flags.Guilds,
     IntentsBitField.Flags.GuildMessages,
@@ -13,17 +13,16 @@ const client = new Client({
 export const discordApi = {
   connect: async () => {
     try {
-      console.log('Conectando ao Discord...');
+      console.log('Persephone is conneting to Discord...');
 
       await client.login(process.env.DISCORD_TOKEN);
 
-      console.log('Conectado ao Discord!');
+      console.log('Persephone is conneted!');
 
       return client;
     } catch (error) {
-      console.error('Error ao conectar ao discord: \n', error);
+      console.error('Error to connect to discord: \n', error);
       return undefined;
     }
-  },
-  client,
+  }
 };

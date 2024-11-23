@@ -1,8 +1,8 @@
-import { discordApi } from '../../../apis';
-import { onReady } from '../../events';
+import { client } from '../../../apis';
+import { GuildAvailable, Ready } from '../../events';
 
 export const EventsService = {
   listen: () => {
-    discordApi.client.once('ready', onReady);
+    client.once('ready', Ready).on('guildAvailable', GuildAvailable);
   },
 };
