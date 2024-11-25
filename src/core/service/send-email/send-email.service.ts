@@ -20,7 +20,6 @@ export async function sendEmail(to: string, subject: string, text: string, code:
         console.error('Error sending email: ', error);
       });
   } else {
-    console.log(mailOptions);
     console.log(`Email de verificação não enviado: código ${code}`);
   }
 }

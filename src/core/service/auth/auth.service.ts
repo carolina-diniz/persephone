@@ -10,6 +10,12 @@ export const Auth = {
     return authCache.get(key);
   },
   verifyCode: (key: string, code: string): boolean => {
+    const codeRegex = /^\d{6}$/;
+
+    if (!codeRegex.test(code)) {
+      return false;
+    }
+
     const value = authCache.get(key);
     return value.code === code;
   },

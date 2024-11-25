@@ -4,8 +4,9 @@ import { ShoppService } from '../shopp';
 export const ValidateEmailService = {
   isValidEmail: async (email: string): Promise<boolean> => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const userPartRegex = /^[a-zA-Z0-9._%+-]{1,64}$/;
 
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email) || !userPartRegex.test(email.split('@')[0])) {
       return false;
     }
 
@@ -27,5 +28,9 @@ export const ValidateEmailService = {
     const domain = email.split('@')[1];
 
     return validDomains.includes(domain);
+  },
+  isNameValid: (name: string): boolean => {
+    const nameRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ'´`^~ ]{1,64}$/;
+    return nameRegex.test(name);
   },
 };
