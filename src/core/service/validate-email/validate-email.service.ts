@@ -24,7 +24,7 @@ export const ValidateEmailService = {
     }
 
     const validDomains = ShoppService.globoDomains;
-    const domain = email.split('@')[1].toLowerCase();
+    const domain = email.split('@')[1];
 
     return validDomains.includes(domain);
   },
