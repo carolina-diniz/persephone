@@ -4,5 +4,5 @@ export const ShoppService = {
   colors: {
     globogamers: '#FEC535' as ColorResolvable,
   },
-  globoDomains: ["g.globo", "prestador.globo", "gmail.com"],
+  globoDomains: ["g.globo", "prestador.globo"],
 };

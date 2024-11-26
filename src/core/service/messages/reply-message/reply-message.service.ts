@@ -1,9 +1,9 @@
-import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ModalSubmitInteraction } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonInteraction, EmbedBuilder, ModalSubmitInteraction } from 'discord.js';
 import { Auth } from '../../auth';
 import { ShoppService } from '../../shopp';
 
 export async function replyMessage(
-  interaction: ModalSubmitInteraction,
+  interaction: ModalSubmitInteraction | ButtonInteraction,
   title: string,
   description?: string,
   row?: ActionRowBuilder<ButtonBuilder>,
