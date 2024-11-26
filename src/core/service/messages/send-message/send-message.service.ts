@@ -60,6 +60,15 @@ export async function sendMessage(
 
       if (doubt) {
         embed.addFields({ name: 'Dúvida', value: `${doubt}`, inline: false });
+
+        const resolved = new ButtonBuilder()
+          .setCustomId('button_reception_resolved')
+          .setLabel('Resolvido')
+          .setStyle(ButtonStyle.Success);
+
+        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(resolved);
+
+        messageOptions['components'] = [row];
       }
 
       if (!channel?.isSendable()) throw new Error('Channel is not sendable');
