@@ -11,26 +11,32 @@ export async function execute(interaction: ButtonInteraction): Promise<void> {
     email: emailField.value,
   };
 
-  const member = interaction.guild?.members.resolve(user.id);
+  const member = await interaction.guild?.members.fetch(user.id);
   const entryRole = interaction.guild?.roles.resolve(process.env.ENTRY_ROLE_ID!);
 
-  if (entryRole && member) {
-    try {
-      await member.roles.add(entryRole);
-
-      const embed = new EmbedBuilder(interaction.message.embeds[0].data);
-      embed
-        .setTitle('ACESSO APROVADO')
-        .setColor('Green')
-        .setFooter({
-          text: `Aprovado por ${interaction.user.displayName}`,
-        });
-
-      await interaction.update({ embeds: [embed], components: [] });
-    } catch (error) {
-      await interaction.deferReply({ ephemeral: true });
-      await replyMessage(interaction, 'ERROR AO AVPROVAR');
-    }
+  if (!entryRole || !member) {
+    await interaction.deferReply({ ephemeral: true });
+    await replyMessage(interaction, 'ERROR AO APROVAR');
+    console.log('Error ao aprovar, entry role or member not found');
     return;
+  }
+
+  try {
+    await member.roles.add(entryRole);
+
+    const embed = new EmbedBuilder(interaction.message.embeds[0].data);
+    embed
+      .setTitle('ACESSO APROVADO')
+      .setColor('Green')
+      .setFooter({
+        text: `Aprovado por ${interaction.user.displayName}`,
+      });
+
+    await interaction.update({ embeds: [embed], components: [] });
+    console.log(`Usuário ${member.displayName} aprovado`);
+  } catch (error) {
+    console.log(error);
+    await interaction.deferReply({ ephemeral: true });
+    await replyMessage(interaction, 'ERROR AO APROVAR');
   }
 }
