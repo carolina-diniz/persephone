@@ -1,6 +1,6 @@
 import { EmbedBuilder, ModalSubmitInteraction, TextChannel } from 'discord.js';
 import 'dotenv/config';
-import { Auth, replyMessage } from '../../service';
+import { Auth, replyMessage } from '../../../core/service';
 
 export async function execute(interaction: ModalSubmitInteraction) {
   await interaction.deferReply({ ephemeral: true });

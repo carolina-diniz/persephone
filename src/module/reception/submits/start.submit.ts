@@ -6,7 +6,7 @@ import {
   sendEmail,
   sendMessage,
   ValidateEmailService,
-} from '../../service';
+} from '../../../core/service';
 
 const timeout = 1000 * 60 * 5;
 const CHANNEL_APPROVE_ID = process.env.CHANNEL_APPROVE_ID!;

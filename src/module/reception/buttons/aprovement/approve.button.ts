@@ -1,6 +1,7 @@
 import { ButtonInteraction, EmbedBuilder } from 'discord.js';
 import 'dotenv/config';
-import { replyMessage } from '../../../service';
+import { replyMessage } from '../../../../core/service';
+
 
 export async function execute(interaction: ButtonInteraction): Promise<void> {
   const [userField, nameField, emailField] = interaction.message.embeds[0].fields;
